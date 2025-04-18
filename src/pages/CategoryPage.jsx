@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoggedInNavbar } from '../components/layout/Navbar';
+import { LoggedOutNavbar } from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import CategoryPageTitle from '../components/section/categorypage/CategoryPageTitle';
 import CoursesList from '../components/layout/CoursesList';
@@ -26,7 +26,7 @@ const CategoryPage = () => {
 
   return (
     <div className='bg-[#F9F9F6]'>
-      <LoggedInNavbar />
+      <LoggedOutNavbar />
       <div className='container mx-auto p-4'>
         <CategoryPageTitle />
         <CoursesList courses={courses} />

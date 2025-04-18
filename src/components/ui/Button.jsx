@@ -12,7 +12,8 @@ const Button = ({
   const variants = {
     primary: 'bg-green-500 text-white hover:bg-green-600',
     secondary: 'bg-green-100 text-green-600 hover:bg-green-200',
-    outline: 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50',
+    outline:
+      'bg-white border border-green-300 text-green-500 hover:bg-green-50',
   };
 
   return (

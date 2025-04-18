@@ -1,7 +1,7 @@
 import React from 'react';
-import { LoggedInNavbar } from '../components/layout/Navbar';
 import CourseCard from '../components/ui/CourseCard';
 import Footer from '../components/layout/Footer';
+import { LoggedOutNavbar } from '../components/layout/Navbar';
 
 const Homepage = () => {
   const courses = [...Array(9)].map((_, i) => ({
@@ -25,7 +25,7 @@ const Homepage = () => {
 
   return (
     <div className='min-h-screen bg-[#FFFDF3]'>
-      <LoggedInNavbar />
+      <LoggedOutNavbar />
 
       <div className='hero-section'>
         <div

@@ -2,13 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import GoogleButton from '../components/ui/GoogleButton';
-import { LoggedOutNavbar } from '../components/layout/Navbar';
+import { Navbar } from '../components/layout/Navbar';
 import LoginForm from '../components/section/loginpage/LoginForm';
 
 const Login = () => {
   return (
     <div className='min-h-screen bg-[#FFFDF3]'>
-      <LoggedOutNavbar />
+      <Navbar />
 
       <div className='flex flex-col min-h-screen items-center justify-center p-4'>
         <div className='bg-white p-8 rounded-lg shadow-md w-full max-w-md'>

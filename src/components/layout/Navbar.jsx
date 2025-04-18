@@ -1,7 +1,8 @@
 import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../ui/Button';
 
-export const LoggedOutNavbar = () => {
+export const Navbar = () => {
   return (
     <nav className='bg-white p-4 shadow-lg'>
       <div className='flex justify-between items-center'>
@@ -17,7 +18,7 @@ export const LoggedOutNavbar = () => {
   );
 };
 
-export const LoggedInNavbar = () => {
+export const LoggedOutNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -55,7 +56,7 @@ export const LoggedInNavbar = () => {
             isMenuOpen ? 'block' : 'hidden'
           } w-full md:flex md:items-center md:w-auto mt-2 md:mt-0`}
         >
-          <ul className='md:flex items-center space-x-4'>
+          <ul className='flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0 text-center md:text-left xl:items-center lg:items-center justify-center md:justify-center'>
             <li>
               <Link
                 to='/category'
@@ -65,11 +66,24 @@ export const LoggedInNavbar = () => {
               </Link>
             </li>
             <li>
-              <img
-                src='/assets/images/avatar/avatar-nav.png'
-                alt='Avatar'
-                className='w-8 h-8 md:w-11 md:h-11 rounded-md'
-              />
+              <Link to='/login'>
+                <Button
+                  variant='primary'
+                  className='md:mx-4 text-sm md:text-base'
+                >
+                  Login
+                </Button>
+              </Link>
+            </li>
+            <li>
+              <Link to='/register'>
+                <Button
+                  variant='outline'
+                  className='md:mx-4 text-sm md:text-base'
+                >
+                  Register
+                </Button>
+              </Link>
             </li>
           </ul>
         </div>
