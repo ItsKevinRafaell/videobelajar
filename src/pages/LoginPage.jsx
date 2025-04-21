@@ -5,11 +5,9 @@ import GoogleButton from '../components/ui/GoogleButton';
 import { Navbar } from '../components/layout/Navbar';
 import LoginForm from '../components/section/loginpage/LoginForm';
 
-const Login = () => {
+const Login = ({ loginUser }) => {
   return (
     <div className='min-h-screen bg-[#FFFDF3]'>
-      <Navbar />
-
       <div className='flex flex-col min-h-screen items-center justify-center p-4'>
         <div className='bg-white p-8 rounded-lg shadow-md w-full max-w-md'>
           <h2 className='text-2xl font-bold text-center poppins mb-2'>
@@ -19,7 +17,7 @@ const Login = () => {
             Yuk, lanjutin belajarmu di videobelajar.
           </p>
 
-          <LoginForm />
+          <LoginForm loginUser={loginUser} />
 
           <Link to='/register'>
             <Button variant='secondary' className='mt-4'>

@@ -26,7 +26,6 @@ const CategoryPage = () => {
 
   return (
     <div className='bg-[#F9F9F6]'>
-      <LoggedOutNavbar />
       <div className='container mx-auto p-4'>
         <CategoryPageTitle />
         <CoursesList courses={courses} />

@@ -6,11 +6,9 @@ import Button from '../components/ui/Button';
 import Divider from '../components/ui/Divider';
 import GoogleButton from '../components/ui/GoogleButton';
 
-const RegisterPage = () => {
+const RegisterPage = ({ createUser }) => {
   return (
     <div className='min-h-screen bg-[#FFFDF3]'>
-      <Navbar />
-
       <div className='flex flex-col min-h-screen items-center justify-center p-4'>
         <div className='bg-white p-8 rounded-lg shadow-md w-full max-w-md'>
           <h2 className='text-2xl font-bold text-center poppins mb-2'>
@@ -20,7 +18,7 @@ const RegisterPage = () => {
             Yuk, daftarkan akunmu sekarang juga!
           </p>
 
-          <RegisterForm />
+          <RegisterForm createUser={createUser} />
 
           <Link to='/login'>
             <Button variant='secondary' className='mt-4' as='a' href='/login'>

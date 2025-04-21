@@ -1,8 +1,15 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../ui/Button';
 
-export const Navbar = () => {
+export const Navbar = ({ loggedInUser, logoutUser }) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false); // State to toggle dropdown menu visibility
+
+  // Function to toggle the dropdown menu visibility
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
   return (
     <nav className='bg-white p-4 shadow-lg'>
       <div className='flex justify-between items-center'>
@@ -13,17 +20,110 @@ export const Navbar = () => {
             className='w-32 md:w-40'
           />
         </Link>
+
+        {loggedInUser ? (
+          // Show logged-in user's name, "Kategori" menu, and avatar dropdown
+          <div className='flex items-center space-x-8'>
+            {/* "Kategori" menu */}
+            <Link to='/category'>
+              <Button
+                variant='secondary'
+                className='md:mx-4 text-sm md:text-base'
+              >
+                Kategori
+              </Button>
+            </Link>
+
+            {/* Avatar icon with dropdown */}
+            <div className='relative'>
+              <button
+                onClick={toggleDropdown}
+                className='flex items-center space-x-2 focus:outline-none'
+              >
+                <img
+                  src={
+                    loggedInUser.avatar ||
+                    '/assets/images/avatar/avatar-nav.png'
+                  }
+                  alt='Avatar'
+                  className='w-12 h-12 rounded-md'
+                />
+              </button>
+
+              {/* Dropdown Menu */}
+              {dropdownOpen && (
+                <div className='absolute right-0 mt-2 bg-white border rounded shadow-md w-48 z-10'>
+                  <ul>
+                    <li>
+                      <Link
+                        to='/profile'
+                        className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                      >
+                        Profil Saya
+                      </Link>
+                    </li>
+                    <li>
+                      <a
+                        href='#'
+                        className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                      >
+                        Kelas Saya
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href='#'
+                        className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                      >
+                        Pesanan Saya
+                      </a>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          logoutUser();
+                          setDropdownOpen(false); // Close the dropdown after logout
+                        }}
+                        className='block w-full px-4 py-2 text-sm text-red-500 hover:bg-gray-100'
+                      >
+                        Keluar
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          // Show login and register buttons for logged-out users
+          <div className='flex items-center space-x-4'>
+            <Link to='/login'>
+              <Button
+                variant='primary'
+                className='md:mx-4 text-sm md:text-base'
+              >
+                Login
+              </Button>
+            </Link>
+            <Link to='/register'>
+              <Button
+                variant='outline'
+                className='md:mx-4 text-sm md:text-base'
+              >
+                Register
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </nav>
   );
 };
 
 export const LoggedOutNavbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
-    <nav className='bg-white shadow-lg p-4 md:p-6'>
-      <div className='flex items-center justify-between flex-wrap'>
+    <nav className='bg-white p-4 shadow-lg'>
+      <div className='flex justify-between items-center'>
         <Link to='/'>
           <img
             src='/assets/images/logo/logo.png'
@@ -31,61 +131,17 @@ export const LoggedOutNavbar = () => {
             className='w-32 md:w-40'
           />
         </Link>
-
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className='md:hidden p-2 focus:outline-none'
-        >
-          <svg
-            className='w-6 h-6'
-            fill='none'
-            stroke='currentColor'
-            viewBox='0 0 24 24'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth='2'
-              d='M4 6h16M4 12h16M4 18h16'
-            />
-          </svg>
-        </button>
-
-        <div
-          className={`${
-            isMenuOpen ? 'block' : 'hidden'
-          } w-full md:flex md:items-center md:w-auto mt-2 md:mt-0`}
-        >
-          <ul className='flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0 text-center md:text-left xl:items-center lg:items-center justify-center md:justify-center'>
-            <li>
-              <Link
-                to='/category'
-                className='text-gray-500 font-semibold dm-sans text-sm md:text-base'
-              >
-                Kategori
-              </Link>
-            </li>
-            <li>
-              <Link to='/login'>
-                <Button
-                  variant='primary'
-                  className='md:mx-4 text-sm md:text-base'
-                >
-                  Login
-                </Button>
-              </Link>
-            </li>
-            <li>
-              <Link to='/register'>
-                <Button
-                  variant='outline'
-                  className='md:mx-4 text-sm md:text-base'
-                >
-                  Register
-                </Button>
-              </Link>
-            </li>
-          </ul>
+        <div className='flex items-center'>
+          <Link to='/login'>
+            <Button variant='primary' className='md:mx-4 text-sm md:text-base'>
+              Login
+            </Button>
+          </Link>
+          <Link to='/register'>
+            <Button variant='outline' className='md:mx-4 text-sm md:text-base'>
+              Register
+            </Button>
+          </Link>
         </div>
       </div>
     </nav>

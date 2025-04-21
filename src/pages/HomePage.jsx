@@ -25,8 +25,6 @@ const Homepage = () => {
 
   return (
     <div className='min-h-screen bg-[#FFFDF3]'>
-      <LoggedOutNavbar />
-
       <div className='hero-section'>
         <div
           className='rounded-lg m-4 md:m-8 p-4 md:p-8 shadow-lg text-center'
