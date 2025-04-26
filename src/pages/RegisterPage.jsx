@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar } from '../components/layout/Navbar';
 import RegisterForm from '../components/section/registerpage/RegisterForm';
 import Button from '../components/ui/Button';
 import Divider from '../components/ui/Divider';

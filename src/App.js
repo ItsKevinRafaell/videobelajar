@@ -5,52 +5,45 @@ import CategoryPage from './pages/CategoryPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
-import { Navbar, LoggedOutNavbar } from './components/layout/Navbar';
-import Button from './components/ui/Button';
+import { Navbar } from './components/layout/Navbar';
 
 function App() {
   const [users, setUsers] = useState([{}]);
   const [loggedInUser, setLoggedInUser] = useState(null);
 
   const createUser = (newUser) => {
-    setUsers((prevUsers) => [...prevUsers, newUser]); // Add the new user to the users array
+    setUsers((prevUsers) => [...prevUsers, newUser]);
     setLoggedInUser(newUser);
   };
 
-  // Pass `createUser` to RegisterForm
   <Route path='/register' element={<RegisterPage createUser={createUser} />} />;
 
-  // Function to update user information
   const updateUser = (updatedUser) => {
     const updatedUsers = users.map((user) =>
       user.id === updatedUser.id ? updatedUser : user
     );
     setUsers(updatedUsers);
-    setLoggedInUser(updatedUser); // Optionally update the logged-in user as well
+    setLoggedInUser(updatedUser);
   };
 
-  // Function to delete a user
   const deleteUser = (userId) => {
     const updatedUsers = users.filter((user) => user.id !== userId);
     setUsers(updatedUsers);
-    setLoggedInUser(null); // Log out the user after deletion (or handle this differently if needed)
+    setLoggedInUser(null);
   };
-
-  // In App.js
 
   const loginUser = (email, password) => {
     const user = users.find(
       (u) => u.email === email && u.password === password
     );
     if (user) {
-      setLoggedInUser(user); // Set the logged-in user
-      return true; // Return true to indicate successful login
+      setLoggedInUser(user);
+      return true;
     } else {
       console.log('Invalid credentials');
-      return false; // Return false to indicate failed login
+      return false;
     }
   };
-  // Pass `loginUser` to LoginForm
   <Route path='/login' element={<LoginPage loginUser={loginUser} />} />;
 
   const logoutUser = () => {
@@ -60,11 +53,7 @@ function App() {
   return (
     <Router>
       <div>
-        {loggedInUser ? (
-          <Navbar loggedInUser={loggedInUser} logoutUser={logoutUser} />
-        ) : (
-          <LoggedOutNavbar />
-        )}
+        <Navbar loggedInUser={loggedInUser} logoutUser={logoutUser} />
 
         <Routes>
           <Route path='/' element={<Homepage />} />
@@ -83,7 +72,9 @@ function App() {
                   deleteUser={deleteUser}
                 />
               ) : (
-                <div>Please login to view your profile</div>
+                <div className='text-center text-2xl font-bold poppins p-6'>
+                  Silahkan login terlebih dahulu
+                </div>
               )
             }
           />

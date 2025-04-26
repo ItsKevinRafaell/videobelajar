@@ -19,6 +19,7 @@ const Button = ({
     disabled: 'bg-gray-300 text-gray-500 cursor-not-allowed',
     profile_outline:
       'bg-white border border-yellow-300 text-yellow-500 bg-yellow-50 hover:bg-yellow-50',
+    no_style: 'text-black-500 text-sm',
   };
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Input from '../../ui/Input';
 import PhoneInput from '../../ui/PhoneInput';
 import Button from '../../ui/Button';
@@ -10,25 +10,25 @@ const RegisterForm = ({ createUser }) => {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("Passwords don't match");
+      alert('Kata sandi tidak cocok. Silakan coba lagi.');
       return;
     }
 
     const newUser = {
-      id: Date.now(), // Unique ID for the new user
+      id: Date.now(),
       fullname,
       email,
       phone,
       password,
     };
 
-    createUser(newUser); // Call the createUser function passed down from App.js
+    createUser(newUser);
     navigate('/');
   };
 
