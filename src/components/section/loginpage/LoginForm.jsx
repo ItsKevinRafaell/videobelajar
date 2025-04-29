@@ -17,8 +17,15 @@ const LoginForm = ({ loginUser }) => {
     if (isLoggedIn) {
       navigate('/');
     } else {
-      setError('Invalid email or password. Please try again.');
+      setError('Email atau kata sandi tidak valid. Silakan coba lagi.');
     }
+  };
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    if (error) setError(''); // Menyembunyikan error saat input berubah
+    if (id === 'email') setEmail(value);
+    if (id === 'password') setPassword(value);
   };
 
   return (
@@ -28,7 +35,7 @@ const LoginForm = ({ loginUser }) => {
         type='email'
         id='email'
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={handleChange}
         required
       />
       <Input
@@ -36,10 +43,10 @@ const LoginForm = ({ loginUser }) => {
         type='password'
         id='password'
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={handleChange}
         required
       />
-      {error && <div className='text-red-500 text-sm'>{error}</div>}{' '}
+      {error && <div className='text-red-500 text-sm'>{error}</div>}
       <Button variant='primary' type='submit'>
         Masuk
       </Button>

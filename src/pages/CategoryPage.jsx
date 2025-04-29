@@ -1,5 +1,4 @@
 import React from 'react';
-import { LoggedOutNavbar } from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import CategoryPageTitle from '../components/section/categorypage/CategoryPageTitle';
 import CoursesList from '../components/layout/CoursesList';

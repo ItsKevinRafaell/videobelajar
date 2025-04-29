@@ -5,27 +5,37 @@ import PhoneInput from '../../ui/PhoneInput';
 import Button from '../../ui/Button';
 
 const RegisterForm = ({ createUser }) => {
-  const [fullname, setFullname] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    password: '',
+    confirmPassword: '',
+  });
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [id]: value }));
+  };
 
   const handleRegister = (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      alert('Kata sandi tidak cocok. Silakan coba lagi.');
+    if (formData.password !== formData.confirmPassword) {
+      setError('Kata sandi tidak cocok. Silakan coba lagi.');
+      return;
+    }
+
+    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      setError('Email tidak valid');
       return;
     }
 
     const newUser = {
       id: Date.now(),
-      fullname,
-      email,
-      phone,
-      password,
+      ...formData,
     };
 
     createUser(newUser);
@@ -37,43 +47,44 @@ const RegisterForm = ({ createUser }) => {
       <Input
         label='Nama Lengkap'
         type='text'
-        id='fullname'
-        value={fullname}
-        onChange={(e) => setFullname(e.target.value)}
+        id='name'
+        value={formData.name}
+        onChange={handleChange}
         required
       />
       <Input
         label='E-Mail'
         type='email'
         id='email'
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        value={formData.email}
+        onChange={handleChange}
         required
       />
       <PhoneInput
         label='No. HP'
         id='phone'
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
+        value={formData.phone}
+        onChange={handleChange}
         required
       />
       <Input
         label='Kata Sandi'
         type='password'
         id='password'
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={formData.password}
+        onChange={handleChange}
         required
       />
       <Input
         label='Konfirmasi Kata Sandi'
         type='password'
-        id='confirm-password'
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
+        id='confirmPassword'
+        value={formData.confirmPassword}
+        onChange={handleChange}
         required
       />
 
+      {error && <div className='text-red-500 text-sm'>{error}</div>}
       <a
         href='#'
         className='text-sm text-black hover:underline mb-4 block text-right dm-sans'

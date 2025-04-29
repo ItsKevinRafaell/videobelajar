@@ -1,54 +1,22 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
 import Homepage from './pages/HomePage';
 import CategoryPage from './pages/CategoryPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import { Navbar } from './components/layout/Navbar';
+import { useUser } from './hooks/useUser';
 
 function App() {
-  const [users, setUsers] = useState([{}]);
-  const [loggedInUser, setLoggedInUser] = useState(null);
-
-  const createUser = (newUser) => {
-    setUsers((prevUsers) => [...prevUsers, newUser]);
-    setLoggedInUser(newUser);
-  };
-
-  <Route path='/register' element={<RegisterPage createUser={createUser} />} />;
-
-  const updateUser = (updatedUser) => {
-    const updatedUsers = users.map((user) =>
-      user.id === updatedUser.id ? updatedUser : user
-    );
-    setUsers(updatedUsers);
-    setLoggedInUser(updatedUser);
-  };
-
-  const deleteUser = (userId) => {
-    const updatedUsers = users.filter((user) => user.id !== userId);
-    setUsers(updatedUsers);
-    setLoggedInUser(null);
-  };
-
-  const loginUser = (email, password) => {
-    const user = users.find(
-      (u) => u.email === email && u.password === password
-    );
-    if (user) {
-      setLoggedInUser(user);
-      return true;
-    } else {
-      console.log('Invalid credentials');
-      return false;
-    }
-  };
-  <Route path='/login' element={<LoginPage loginUser={loginUser} />} />;
-
-  const logoutUser = () => {
-    setLoggedInUser(null);
-  };
+  const {
+    users,
+    loggedInUser,
+    loginUser,
+    logoutUser,
+    createNewUser,
+    updateUserData,
+    deleteUserData,
+  } = useUser();
 
   return (
     <Router>
@@ -60,7 +28,7 @@ function App() {
           <Route path='/login' element={<LoginPage loginUser={loginUser} />} />
           <Route
             path='/register'
-            element={<RegisterPage createUser={createUser} />}
+            element={<RegisterPage createUser={createNewUser} />}
           />
           <Route
             path='/profile'
@@ -68,8 +36,8 @@ function App() {
               loggedInUser ? (
                 <ProfilePage
                   user={loggedInUser}
-                  updateUser={updateUser}
-                  deleteUser={deleteUser}
+                  updateUser={updateUserData}
+                  deleteUser={deleteUserData}
                 />
               ) : (
                 <div className='text-center text-2xl font-bold poppins p-6'>

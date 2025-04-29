@@ -17,7 +17,8 @@ const Button = ({
       'bg-white border border-green-300 text-green-500 hover:bg-green-50',
     ghost: 'bg-transparent text-green-500 hover:bg-green-50',
     disabled: 'bg-gray-300 text-gray-500 cursor-not-allowed',
-    profile_outline:
+    profile_outline: 'bg-white border border-yellow-300 text-yellow-500',
+    profile:
       'bg-white border border-yellow-300 text-yellow-500 bg-yellow-50 hover:bg-yellow-50',
     no_style: 'text-black-500 text-sm',
   };
