@@ -77,10 +77,13 @@ const CourseManagementPage = () => {
         <ProfileSidebar
           activeMenu={'course-management'}
           setActiveMenu={() => {}}
-          title={'Manajemen Kelas'}
-          description={'Manajemen Kelas Anda'}
+          title={'Manajemen Course'}
+          description={'Manajemen Course Anda'}
         />{' '}
         <div className='col-span-1 md:col-span-2 bg-white p-6 rounded-lg shadow-md'>
+          <h1 className='text-3xl font-semibold text-center mb-6'>
+            {selectedCourse ? 'Perbarui Course' : 'Tambah Course'}
+          </h1>
           <CourseForm
             formData={formData}
             handleChange={handleChange}

@@ -17,7 +17,7 @@ const ProfileSidebar = ({ activeMenu, setActiveMenu, title, description }) => {
 
     {
       id: 'course-management',
-      label: 'Manajemen Kelas',
+      label: 'Manajemen Course',
       route: '/course-management',
     }, // Route for course management
   ];
