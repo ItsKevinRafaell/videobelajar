@@ -1,5 +1,3 @@
-// store/redux/courseReducer.js
-
 const initialState = {
   courses: [],
   loading: false,
@@ -7,16 +5,14 @@ const initialState = {
 };
 
 // Redux Reducer
-const courseReducer = (
-  state = { courses: [], loading: false, error: null },
-  action
-) => {
+const courseReducer = (state = initialState, action) => {
+  // Use initialState here
   switch (action.type) {
     case 'SET_COURSES':
       return {
         ...state,
-        courses: Array.isArray(action.payload) ? action.payload : [],
-      }; // Ensure it's always an array
+        courses: Array.isArray(action.payload) ? action.payload : [], // Ensure it's always an array
+      };
     case 'SET_LOADING':
       return { ...state, loading: action.payload };
     case 'SET_ERROR':
