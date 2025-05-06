@@ -25,7 +25,12 @@ const ProfilePage = ({ user, updateUser, deleteUser }) => {
   return (
     <div className='bg-[#FFFDF3] p-6'>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-6 p-6'>
-        <ProfileSidebar activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+        <ProfileSidebar
+          activeMenu={activeMenu}
+          setActiveMenu={setActiveMenu}
+          title={'Ubah Profil'}
+          description={'Ubah data diri anda'}
+        />
 
         <div className='col-span-1 md:col-span-2 bg-white p-6 rounded-lg shadow-md'>
           <ProfileHeader user={user} />

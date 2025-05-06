@@ -6,6 +6,8 @@ import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import { Navbar } from './components/layout/Navbar';
 import { useUser } from './hooks/useUser';
+import UserManagementPage from './pages/UserManagementPage';
+import CourseManagementPage from './pages/CourseManagementPage';
 
 function App() {
   const {
@@ -47,6 +49,8 @@ function App() {
             }
           />
           <Route path='/category' element={<CategoryPage />} />
+          <Route path='/course-management' element={<CourseManagementPage />} />
+          <Route path='/user-management' element={<UserManagementPage />} />
         </Routes>
       </div>
     </Router>

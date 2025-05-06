@@ -5,19 +5,10 @@ const API_URL_USER = process.env.REACT_APP_API_URL + 'users';
 export const getUsers = async () => {
   try {
     const response = await axios.get(API_URL_USER);
+    console.log('Response:', response.data); // Log the response data
     return response.data;
   } catch (error) {
     console.error('Error fetching users:', error);
-    throw error;
-  }
-};
-
-export const getUserById = async (id) => {
-  try {
-    const response = await axios.get(`${API_URL_USER}/${id}`);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching user:', error);
     throw error;
   }
 };
